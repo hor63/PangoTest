@@ -29,7 +29,11 @@ int main(void) {
 			"\nDer Plüschelch rührt keinen Huf. Die efter effter efffter effer efffer effffer efier effier efffier Ligatur"
 			"\n1234567890,;.:-_#'áàéèâ gqaaQ");
 
-	const char* font = "Noto Sans 40px";
+	//const char* font = "Noto Serif,Noto Naskh Arabic,Noto Serif Thai,Noto Serif CJK SC,Noto Serif CJK TC,Noto Serif CJK JP Regular 30";
+	//const char* font = "Noto Sans,Noto Sans Arabic,Noto Sans Thai Looped,Noto Sans CJK SC,Noto Sans CJK TC,Noto Sans CJK JP Regular 30";
+	//const char* font = "Noto Serif,Noto Naskh Arabic,Noto Serif Thai,Noto Serif CJK SC,Noto Serif CJK TC,Noto Serif CJK JP Bold 30";
+	const char* font = "Noto Sans,Noto Sans Arabic,Noto Sans Thai Looped,Noto Sans CJK SC,Noto Sans CJK TC,Noto Sans CJK JP Bold 30";
+
 	//const char* font = "sans-serif 40px";
 	//const char* font = "Roboto 40px";
 	//const char* font = "Droid 40px";
@@ -237,17 +241,23 @@ int main(void) {
 				}
 
 				const unsigned char* bitmapP = ftFace->glyph->bitmap.buffer;
+				printf ("\n");
 				for (int k = 0; k < ftFace->glyph->bitmap.rows; k++) {
 
 					for (int l = 0; l < ftFace->glyph->bitmap.width; l++) {
 
-						printf (" %3d",(int)bitmapP[l]);
+						if (bitmapP[l] == 0) {
+							printf (". ",(int)bitmapP[l]);
+						} else {
+							printf ("%2X",(int)bitmapP[l]);
+						}
 
 					}
 					printf ("\n");
 					bitmapP += ftFace->glyph->bitmap.pitch;
 
 				}
+				printf ("\n");
 
 			}
 
